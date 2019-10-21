@@ -7,6 +7,7 @@ exports.up = function(knex) {
       .notNullable()
       .unique();
     users.string("password").notNullable();
+    users.boolean('creator').notNullable();
   });
 };
 
