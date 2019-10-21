@@ -12,7 +12,7 @@ server.use(cors());
 
 server.use('/api', usersRouter)
 
-router.get("/", (req, res) => {
+server.get("/", (req, res) => {
     res.send({ message: "working !!!" });
   });
 
