@@ -5,7 +5,8 @@ module.exports = {
   find,
   findBy,
   findById,
-  remove
+  remove,
+  update
 };
 
 function find() {
@@ -24,6 +25,8 @@ function add(post) {
     });
 }
 
+
+
 function findById(id) {
   return db("posts")
     .where({ id })
@@ -31,5 +34,14 @@ function findById(id) {
 }
 
 function remove() {
-
+    return db('posts')
+    .where('id', id)
+    .del();
 }
+
+function update(id, changes) {
+    return db('posts')
+      .where('id', id)
+      .update(changes)
+      .then(count => (count > 0 ? this.get(id) : null));
+  }
