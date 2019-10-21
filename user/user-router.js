@@ -50,9 +50,11 @@ router.post("/login", (req, res) => {
 
 
 router.get('/users', restricted,  (req, res) => {
+   
     Users.find()
     .then(users => {
-        res.json({loggedInUser: req.username, users})
+        console.log(users)
+        res.json(users)
     })
     .catch(err => res.send(err))
 })
@@ -61,7 +63,9 @@ router.get('/users', restricted,  (req, res) => {
 function generateToken(user) {
   const payload = {
     username: user.username,
-    subject: user.id
+    subject: user.id,
+    accountType: user.accountType
+
   };
   const options = {
     expiresIn: "8h"

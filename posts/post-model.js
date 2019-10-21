@@ -9,23 +9,23 @@ module.exports = {
 };
 
 function find() {
-  return db("users").select("id", "username", "accountType");
+  return db("posts").select("id", "postName", "description");
 }
 
 function findBy(filter) {
-  return db("users").where(filter);
+  return db("posts").where(filter);
 }
 
-function add(user) {
-  return db("users")
-    .insert(user, "id")
+function add(post) {
+  return db("posts")
+    .insert(post, "id")
     .then(id => {
       findById(id);
     });
 }
 
 function findById(id) {
-  return db("users")
+  return db("posts")
     .where({ id })
     .first();
 }
