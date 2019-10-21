@@ -64,7 +64,7 @@ function generateToken(user) {
     subject: user.id
   };
   const options = {
-    expiresIn: "1h"
+    expiresIn: "8h"
   };
 
   return jsonwebtoken.sign(payload, secrets.jwtSecret, options);
