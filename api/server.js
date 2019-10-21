@@ -12,7 +12,7 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api', usersRouter)
-server.use('/posts', postsRouter)
+server.use('/api', postsRouter)
 
 server.get("/", (req, res) => {
     res.send({ message: "working !!!" });
