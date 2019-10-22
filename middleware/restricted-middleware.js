@@ -11,7 +11,8 @@ module.exports = (req, res, next) => {
                 res.status(401).json({message: 'A token is required to execute this action.'})
             } else {
                 req.user = {
-                    username: decodedToken.username
+                    username: decodedToken.username,
+                    accountType: decodedToken.accountType,
                 }
                 next()
             }

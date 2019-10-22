@@ -6,7 +6,7 @@ const jsonwebtoken = require("jsonwebtoken");
 const Posts = require("./post-model");
 const secrets = require("../config/secrets");
 const restricted = require("../middleware/restricted-middleware");
-const accountType = require("../profile-checker/profile-checker");
+const accountTypeChecker = require("./profile-checker");
 
 router.get("/", (req, res) => {
   res.send({ message: "posts working !!!" });
@@ -20,7 +20,7 @@ router.get("/postList", restricted, (req, res) => {
     .catch(err => res.send({ message: "get failed" }));
 });
 
-router.post("/createPost", restricted, (req, res) => {
+router.post("/createPost", restricted, accountTypeChecker('creator'), (req, res) => {
   const token = req.headers.authorization;
   let post = req.body;
 
@@ -32,7 +32,7 @@ router.post("/createPost", restricted, (req, res) => {
         id: decodedToken.id;
       }
       Posts.add(post)
-        .then(post => res.status(200).json(post))
+        .then(post => res.status(200).json({message: 'post created succesfully', post}))
         .catch(err =>
           res.status(500).json({ message: "cannot add this post" })
         );
