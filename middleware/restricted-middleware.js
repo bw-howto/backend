@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
     if(token) {
         jsonwebtoken.verify(token, secrets.jwtSecret, (err, decodedToken) => {
             if(err) {
-                res.status(401).json({message: 'nice try you cannot pass'})
+                res.status(401).json({message: 'A token is required to execute this action.'})
             } else {
                 req.user = {
                     username: decodedToken.username

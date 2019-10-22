@@ -18,7 +18,7 @@ router.post("/register", (req, res) => {
 
   Users.add(user)
     .then(saved => {
-      res.status(201).json(saved);
+      res.status(201).json({ message: `Thanks for creating an account ${user.username}. You can now login.` ,saved});
     })
     .catch(error => {
       res.status(500).json({ message: "cannot add this user", error });

@@ -33,7 +33,7 @@ function findById(id) {
     .first();
 }
 
-function remove() {
+function remove(id) {
     return db('posts')
     .where('id', id)
     .del();

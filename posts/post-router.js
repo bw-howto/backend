@@ -54,9 +54,21 @@ router.put("/updatePost/:id", restricted, (req, res) => {
       })
       .catch(error => {
         console.log(postData);
-        res.json({ message: "the post info could not be retrieved" });
+        res.json({ message: "Thank you for updating your post" });
       });
   }
 });
+
+router.delete('/deletePost/:id', restricted, (req, res) => {
+  const id = req.params.id
+
+  Posts.remove(id)
+  .then(post => {
+    res.json({message: 'post deleted succesfully', post})
+  })
+  .catch(error => {
+    res.status(200).json({message: 'the post could not be removed'})
+  })
+})
 
 module.exports = router;
