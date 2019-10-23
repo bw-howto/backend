@@ -4,7 +4,7 @@ exports.up = function(knex) {
       tbl.increments("id");
 
       tbl
-        .string("username", 24)
+        .string("username", 255)
         .notNullable()
         .unique();
       tbl.string("password").notNullable();
@@ -13,7 +13,7 @@ exports.up = function(knex) {
     .createTable("posts", tbl => {
       tbl.increments("id");
       tbl
-        .string("postName", 24)
+        .string("postName", 255)
         .notNullable()
         .unique();
       tbl.string("description").notNullable();
